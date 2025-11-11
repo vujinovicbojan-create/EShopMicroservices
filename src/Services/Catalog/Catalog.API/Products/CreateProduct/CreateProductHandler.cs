@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.CQRS;
 using Catalog.API.Models;
+using Marten;
 
 namespace Catalog.API.Products.CreateProduct
 {
@@ -7,7 +8,8 @@ namespace Catalog.API.Products.CreateProduct
     : ICommand<CreateProductResult>;
     public record CreateProductResult(Guid Id);
 
-    public class CreateProductCommandHandler : ICommandHandler<CreateProductCommand, CreateProductResult>
+    //session needed for marten library
+    public class CreateProductCommandHandler(IDocumentSession session) : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
         public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
         {
@@ -21,6 +23,8 @@ namespace Catalog.API.Products.CreateProduct
             };
 
             //save to database
+            session.Store(product);
+            await session.SaveChangesAsync();
 
             return new CreateProductResult(Guid.NewGuid());
         }
