@@ -1,7 +1,6 @@
 ﻿using Carter;
 using Catalog.API.Models;
 using Catalog.API.Products.CreateProduct;
-using Catalog.API.Products.GetProductW;
 using Mapster;
 using MediatR;
 

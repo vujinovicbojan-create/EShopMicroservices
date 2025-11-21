@@ -1,9 +1,12 @@
 using Carter;
+using Catalog.API.Data;
+using FluentValidation;
 using Marten;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //add services
+builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 builder.Services.AddCarter();
 builder.Services.AddMediatR(config =>
 {
@@ -15,6 +18,12 @@ builder.Services.AddMarten(options =>
 {
     options.Connection(builder.Configuration.GetConnectionString("Database")!);
 }).UseLightweightSessions();
+
+//registere init data
+if(builder.Environment.IsDevelopment())
+{
+    builder.Services.InitializeMartenWith<CatalogInitialData>();
+}
 
 var app = builder.Build();
 

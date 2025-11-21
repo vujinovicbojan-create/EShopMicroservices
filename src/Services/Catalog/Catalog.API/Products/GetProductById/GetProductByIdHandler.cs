@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.CQRS;
+using Catalog.API.Exceptions;
 using Catalog.API.Models;
 using Marten;
 
@@ -15,6 +16,7 @@ namespace Catalog.API.Products.GetProductById
 
             if (product is null)
             {
+                throw new ProductNotFoundException(query.id);
             }
 
             return new GetProductByIdResult(product);

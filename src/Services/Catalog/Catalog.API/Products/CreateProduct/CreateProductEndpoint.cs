@@ -8,7 +8,7 @@ namespace Catalog.API.Products.CreateProduct
 
     public record CreateProductResponse(Guid Id);
 
-    internal class CreateProductEndpoint : ICarterModule
+    public class CreateProductEndpoint : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
