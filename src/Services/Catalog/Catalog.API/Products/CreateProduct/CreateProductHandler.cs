@@ -18,7 +18,8 @@ namespace Catalog.API.Products.CreateProduct
         private readonly IDocumentSession _session;
         private readonly IValidator<CreateProductCommand> _validator;
 
-        public CreateProductCommandHandler(IDocumentSession session, IValidator<CreateProductCommand> validator)
+        public CreateProductCommandHandler(IDocumentSession session, 
+                                           IValidator<CreateProductCommand> validator)
         {
             _session = session;
             _validator = validator;

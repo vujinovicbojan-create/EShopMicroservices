@@ -1,5 +1,4 @@
 ﻿using BuildingBlocks.Exceptions;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Catalog.API.Exceptions
 {

@@ -6,7 +6,7 @@
         {
         }
 
-        public NotFoundException(string entityType, Guid id) : base($"Entity \"{entityType}\" with key ({id}) was not found")
+        public NotFoundException(string entityType, object key) : base($"Entity \"{entityType}\" with key ({key}) was not found")
         {
         }
     }
