@@ -7,8 +7,15 @@ namespace Catalog.API.Products.UpdateProduct
 
     public record UpdateProductResult(bool IsSuccess);
 
-    public class UpdateProductHandler(IDocumentSession documentSession) : ICommandHandler<UpdateProductCommand, UpdateProductResult>
+    internal class UpdateProductHandler : ICommandHandler<UpdateProductCommand, UpdateProductResult>
     {
+        private readonly IDocumentSession _session;
+
+        public UpdateProductHandler(IDocumentSession session)
+        {
+            _session = session;
+        }
+
         public Task<UpdateProductResult> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();

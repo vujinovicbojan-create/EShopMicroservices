@@ -1,5 +1,4 @@
-﻿using Basket.API.Basket.StoreBasket;
-using Basket.API.Data;
+﻿using Basket.API.Data;
 using BuildingBlocks.CQRS;
 using FluentValidation;
 
@@ -7,14 +6,6 @@ namespace Basket.API.Basket.DeleteBasket
 {
     public record DeleteBasketCommand(string UserName) : ICommand<DeleteBasketResult>;
     public record DeleteBasketResult(bool IsSuccess);
-
-    public class DeleteBasketFluentValidation : AbstractValidator<DeleteBasketCommand>
-    {
-        public DeleteBasketFluentValidation()
-        {
-            RuleFor(x => x.UserName).NotEmpty().WithMessage("UserName is required");
-        }
-    }
 
     public class DeleteBasketHandler : ICommandHandler<DeleteBasketCommand, DeleteBasketResult>
     {

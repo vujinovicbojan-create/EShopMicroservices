@@ -6,7 +6,6 @@ using MediatR;
 
 namespace Catalog.API.Products.GetProductById
 {
-
     public record GetProductByIdResponse(Product product);
 
     internal class GetProductByIdEndpoint : ICarterModule

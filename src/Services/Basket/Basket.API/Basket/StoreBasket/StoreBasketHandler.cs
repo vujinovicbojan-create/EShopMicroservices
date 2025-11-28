@@ -5,7 +5,7 @@ using FluentValidation;
 
 namespace Basket.API.Basket.StoreBasket
 {
-    public record StoreBasketCommand(ShoppingCart ShoppingCart) : ICommand<StoreBasketResult>;
+    public record StoreBasketCommand(ShoppingCart Cart) : ICommand<StoreBasketResult>;
 
     public record StoreBasketResult(string UserName);
 
@@ -32,9 +32,9 @@ namespace Basket.API.Basket.StoreBasket
                 throw new ValidationException(exceptionMessage);
             }
 
-            await _basketRepository.StoreBasket(command.ShoppingCart, cancellationToken);
+            await _basketRepository.StoreBasket(command.Cart, cancellationToken);
 
-            return new StoreBasketResult(command.ShoppingCart.UserName);
+            return new StoreBasketResult(command.Cart.UserName);
         }
     }
 }
